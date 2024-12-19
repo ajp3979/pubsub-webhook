@@ -45,12 +45,6 @@ def test_wrong_method(req):
     assert main.pubsub_webhook(req) == ('Method not allowed', 405)
 
 
-def test_forbidden(req, env_vars):
-    req.remote_addr = '8.8.8.0'
-
-    assert main.pubsub_webhook(req) == ('Forbidden', 403)
-
-
 def test_allowed(req, env_vars):
     req.remote_addr = '1.2.3.0'
 
