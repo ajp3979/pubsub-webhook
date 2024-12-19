@@ -2,12 +2,11 @@ from google.cloud import pubsub
 import os
 
 
-def whitelist_req(req, ranges):
+def whitelist_req(req, cidr):
     from ipaddress import ip_address, ip_network
 
-    for r in ranges.split(','):
-        if ip_address(req.remote_addr) in ip_network(r):
-            return True
+    if ip_address(req.remote_addr) in ip_network(cidr):
+        return True
 
     return False
 
