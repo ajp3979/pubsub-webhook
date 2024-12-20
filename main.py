@@ -7,7 +7,7 @@ def pubsub_webhook(req):
 
     client = pubsub.PublisherClient()
 
-    topic_project = os.environ.get('TOPIC_PROJECT', os.environ['GCP_PROJECT'])
+    topic_project = os.environ.get('TOPIC_PROJECT')
     topic_name = os.environ['TOPIC_NAME']
 
     topic = f'projects/{topic_project}/topics/{topic_name}'

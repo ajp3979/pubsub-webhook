@@ -75,13 +75,13 @@ gcloud projects add-iam-policy-binding ${GOOGLE_CLOUD_PROJECT} \
 ```bash
 gcloud functions deploy webhook \
     --source . \
-    --runtime python11 \
+    --runtime python311 \
     --region us-central1 \
     --entry-point pubsub_webhook \
-    --trigger-topic new-integration-one \
     --build-service-account projects/${TOPIC_PROJECT}/serviceAccounts/webhook-build@${TOPIC_PROJECT}.iam.gserviceaccount.com \
     --service-account webhook@${TOPIC_PROJECT}.iam.gserviceaccount.com \
-    --set-env-vars TOPIC_NAME=${TOPIC_NAME},TOPIC_PROJECT=${TOPIC_PROJECT}
+    --set-env-vars TOPIC_NAME=${TOPIC_NAME},TOPIC_PROJECT=${TOPIC_PROJECT} \
+    --trigger-http
 ```
 Note: Remove `--build-service-account` if you are using a default service account. This command will require an authenticated request.
 
